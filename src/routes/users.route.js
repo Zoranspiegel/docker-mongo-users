@@ -7,4 +7,6 @@ router.get("/", usersCtr.getAllUsers);
 
 router.get("/create", usersCtr.createUser);
 
+router.get("/delete", usersCtr.deleteUser);
+
 module.exports = router;

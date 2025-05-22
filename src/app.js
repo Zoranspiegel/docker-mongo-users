@@ -1,9 +1,9 @@
+require("dotenv").config();
 const connectMongoDB = require("./config/db.js");
 const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler.js");
-
 connectMongoDB();
 
 const app = express();

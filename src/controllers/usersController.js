@@ -24,7 +24,17 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    await User.deleteOne({ username: "Zoran" });
+    res.json({ message: "Success" }).status(201);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsers,
   createUser,
+  deleteUser,
 };
