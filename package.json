@@ -1,0 +1,19 @@
+{
+  "name": "mongo-users",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Aeolian",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
