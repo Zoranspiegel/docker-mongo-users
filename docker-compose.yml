@@ -19,7 +19,7 @@ services:
       
   schreck-server:
     build: .
-    image: schreck-express:node22
+    image: schreck-express-mongo:1
     container_name: schreck-server
     networks:
       - schreck-net
