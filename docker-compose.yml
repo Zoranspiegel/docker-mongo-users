@@ -1,0 +1,29 @@
+version: '3.8'
+networks:
+  schreck-net:
+    driver: bridge
+
+services:
+  schreck-mongo:
+    image: mongo:latest
+    container_name: schreck-mongo
+    networks:
+      - schreck-net
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=schreck
+      - MONGO_INITDB_ROOT_PASSWORD=Q1w2e3r4
+      
+  schreck-server:
+    build: .
+    image: schreck-express:node22
+    container_name: schreck-server
+    networks:
+      - schreck-net
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - schreck-mongo
