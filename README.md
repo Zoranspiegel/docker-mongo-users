@@ -136,7 +136,7 @@ services:
 
 ```
 
-## 2. Levantamiento
+### 2. Levantamiento
 
 Levanté desde la terminal todo y docker automáticamente hizo build, creó redes, creó containers, los levantó y se quedó escuchando los logs de todos a la vez.
 
@@ -152,4 +152,33 @@ docker compose down
 y también solo hacer builds con el comando:
 ```bash
 docker compose build
+```
+
+### 3. Creación de volúmenes
+Creé en docker-compose.yml un volúmen para persistir los datos de mi imagen de mongo. Es importante especificar el directorio en que mongodb guarda la data. Los directorios de otras bases de datos varían:
+
+```yml
+
+schreck-mongo:
+  volumes:
+      - schreck-mongo-data:/data/db
+    # - schreck-postgres-data:/var/lib/postgresql/data
+    # - schreck-mysql-data:/var/lib/mysql
+    # - schreck-mariadb-data:/var/lib/mysql
+    # - schreck-redis-data:/data
+
+  volumes:
+    schreck-mongo-data:
+  # schreck-postgres-data:
+  # schreck-mysql-data:
+  # schreck-mariadb-data:
+  # schreck-redis-data:
+```
+
+Creé un volúmen para también para poder sobreescribir los datos de la imagen del servidor en entorno de desarrollo. Esto debo eliminarlo antes de pasar a producción:
+
+```yml
+schreck-server:
+  volumes:
+    - .:/home/app
 ```

@@ -2,6 +2,7 @@ const User = require("../models/User.js");
 
 const getAllUsers = async (req, res, next) => {
   try {
+    console.log('Getting all users...');
     const allUsers = await User.find();
     res.json(allUsers).status(200);
   } catch (error) {
@@ -11,6 +12,7 @@ const getAllUsers = async (req, res, next) => {
 
 const createUser = async (req, res, next) => {
   try {
+    console.log('Creating user...')
     const newUser = {
       username: "Zoran",
       email: "zoran@email.com",
@@ -26,6 +28,7 @@ const createUser = async (req, res, next) => {
 
 const deleteUser = async (req, res) => {
   try {
+    console.log('Deleting user...');
     await User.deleteOne({ username: "Zoran" });
     res.json({ message: "Success" }).status(201);
   } catch (error) {
