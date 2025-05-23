@@ -18,7 +18,9 @@ services:
       - schreck-mongo-data:/data/db
       
   schreck-server:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev # DEV
     image: schreck-express:node22
     container_name: schreck-server
     networks:
@@ -29,6 +31,8 @@ services:
       - .env
     depends_on:
       - schreck-mongo
+    volumes: # DEV
+      - .:/home/app
 
 volumes:
   schreck-mongo-data:
