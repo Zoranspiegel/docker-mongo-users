@@ -19,7 +19,6 @@ services:
       
   schreck-server:
     build: .
-    command: nodemon index.js # DEV
     image: schreck-express:node22
     container_name: schreck-server
     networks:
