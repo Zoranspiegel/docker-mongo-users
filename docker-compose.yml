@@ -1,4 +1,3 @@
-version: '3.8'
 networks:
   schreck-net:
     driver: bridge
@@ -18,8 +17,7 @@ services:
       - schreck-mongo-data:/data/db
       
   schreck-server:
-    build: .
-    image: schreck-express:1
+    image: zoranbow/schreck-express:1
     container_name: schreck-server
     networks:
       - schreck-net

@@ -1,4 +1,3 @@
-version: '3.8'
 networks:
   schreck-net:
     driver: bridge
@@ -21,18 +20,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev # DEV
-    image: schreck-express:1
+    image: zoranbow/schreck-express:1
     container_name: schreck-server
     networks:
       - schreck-net
     ports:
       - "3000:3000"
     env_file:
-      - .env
+      - .env 
     depends_on:
       - schreck-mongo
     volumes: # DEV
       - .:/home/app
+    command: "npm i"
 
 volumes:
   schreck-mongo-data:
