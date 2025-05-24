@@ -44,20 +44,39 @@ mongoose.connect(
 );
 ```
 
+Me aseguré de tener un archivo .dockerignore para que los archivos innecesarios, incluidolos nod node_modules, no se copien en la imagen durante la build.
+
+*.dockerignore*
+
+```
+node_modules
+.env
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+```
+
 ### 5. Agregar archivo Dockerfile y crear imagen
 
-Creé dentro del directorio del proyecto un archivo Dockerfil con las directrices para crear una imagen y dejar como expuesto el puerto 3000:
+Creé dentro del directorio del proyecto un archivo Dockerfil con las directrices para crear una imagen y dejar como expuesto el puerto 3000. Me aseguré de que antes de copiar todo el código fuente se ejecutara npm i para que se instalen los packetes de node:
+
+*Dockerfile*
 
 ```docker
 FROM node:22
 
-RUN mkdir -p /home/app
+WORKDIR /home/app
 
-COPY . /home/app
+COPY package*.json ./
+
+RUN npm i
+
+COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "/home/app/index.js"]
+CMD ["node", "index.js"]
 ```
 
 Y finalmente, desde la terminal, creé la imagen con nombre y tag desde el directorio de la aplicación:
@@ -182,3 +201,5 @@ schreck-server:
   volumes:
     - .:/home/app
 ```
+
+## ENTORNO DE DESARROLLO

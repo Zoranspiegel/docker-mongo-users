@@ -32,7 +32,7 @@ services:
       - schreck-mongo
     volumes: # DEV
       - .:/home/app
-    command: "npm i"
+    command: sh -c "npm i && nodemon index.js"
 
 volumes:
   schreck-mongo-data:
